@@ -216,6 +216,11 @@ def table2str(d):
     return ''.join([ '%sS%s' % (dump_shortstr(k), dump_longstr(v))
                      for k, v in d.items() ])
 
+
+def dump_utf8longstr(s):
+    return '%s%s' % (longstr_header.pack(len(s)), s)
+
+
 def dump_table(d):
     entries = table2str(d)
-    return dump_longstr(entries)
+    return dump_utf8longstr(entries)
